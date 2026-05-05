@@ -2,7 +2,7 @@ def registrar_usuario(usuarios):
     print("\n===== CREAR USUARIO =====")
 
     nickname = input("Cree su nickname: ")
-    contrasena = input("Cree su contraseña: ")
+    contraseña = input("Cree su contraseña: ")
 
     for usuario in usuarios:
         if usuario["nickname"] == nickname:
@@ -26,7 +26,7 @@ def registrar_usuario(usuarios):
 
     nuevo_usuario = {
         "nickname": nickname,
-        "contrasena": contrasena,
+        "contraseña": contraseña,
         "rol": rol
     }
 
@@ -40,10 +40,10 @@ def login(usuarios):
     print("\n===== LOGIN =====")
 
     nickname = input("Digite su nickname: ")
-    contrasena = input("Digite su contraseña: ")
+    contraseña = input("Digite su contraseña: ")
 
     for usuario in usuarios:
-        if usuario["nickname"] == nickname and usuario["contrasena"] == contrasena:
+        if usuario["nickname"] == nickname and usuario["contraseña"] == contraseña:
             print("\nInicio de sesión exitoso.")
             print(f"Bienvenido {usuario['nickname']}")
             print(f"Rol: {usuario['rol']}")
