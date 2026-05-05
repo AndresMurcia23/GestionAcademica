@@ -426,7 +426,8 @@ def main():
             menu_profesor(estudiantes, cursos, inscripciones, notas)
         else:
             menu_estudiante(cursos, inscripciones, notas)
-            print("esto es una prueba para saber si sirve lo de git")
+            print("estoy en tv xde")
+
 
 
 if __name__ == "__main__":
