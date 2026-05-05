@@ -51,7 +51,7 @@ El sistema permite la gestión básica de la información académica:
 ## Tecnologías Utilizadas
 
 - Python  
-- Programación estructurada  
+- Programación estructurada imperativa
 - Listas y diccionarios  
 
 ---
