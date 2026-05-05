@@ -5,7 +5,7 @@ def registrar_usuario(usuarios):
     contraseña = input("Cree su contraseña: ")
 
     for usuario in usuarios:
-        if usuario["nickname"] == nickname:
+        if usuario["nickname"] == nickname and usuario["contraseña"] == contraseña:
             print("Error: Ese nickname ya existe.")
             return
 
