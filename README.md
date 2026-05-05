@@ -73,4 +73,4 @@ El código fuente del proyecto no se encuentra en esta rama.
 
 Puedes verlo directamente aquí:
 
-👉 [Ver código en la rama master](https://github.com/AndresMurcia23/GestionAcademica/tree/master)
+ [Ver código en la rama master](https://github.com/AndresMurcia23/GestionAcademica/tree/master)
