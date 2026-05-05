@@ -426,7 +426,7 @@ def main():
             menu_profesor(estudiantes, cursos, inscripciones, notas)
         else:
             menu_estudiante(cursos, inscripciones, notas)
-            print("estoy en tv xde")
+            
 
 
 
