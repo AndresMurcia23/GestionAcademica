@@ -1,4 +1,3 @@
-
 def registrar_usuario(usuarios):
     print("\n===== CREAR USUARIO =====")
 
@@ -427,6 +426,7 @@ def main():
             menu_profesor(estudiantes, cursos, inscripciones, notas)
         else:
             menu_estudiante(cursos, inscripciones, notas)
+            print("esto es una prueba para saber si sirve lo de git")
 
 
 if __name__ == "__main__":
