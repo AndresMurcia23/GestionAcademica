@@ -1,4 +1,3 @@
-
 def registrar_usuario(usuarios):
     """
     Registra un nuevo usuario dentro del sistema académico.
@@ -354,10 +353,10 @@ def inscribir_estudiante(estudiantes, cursos, inscripciones):
 
 def registrar_nota(inscripciones, notas):
     """
-    Registra una calificación para un estudiante inscrito.
+    Registra múltiples calificaciones para estudiantes inscritos.
 
-    Valida previamente la existencia de la inscripción y
-    verifica que la nota se encuentre dentro del rango permitido.
+    Permite ingresar varias notas de manera consecutiva
+    hasta que el usuario decida finalizar el proceso.
 
     Parámetros:
     ----------
@@ -370,56 +369,78 @@ def registrar_nota(inscripciones, notas):
     Retorna:
     -------
     None
-
-    Consideraciones técnicas:
-    ------------------------
-    - Implementa validación de rango numérico.
-    - Utiliza casting str → float.
-    - Emplea manejo de excepciones.
-    - Gestiona datos mediante diccionarios.
     """
 
-    print("\n===== REGISTRAR NOTA =====")
+    print("\n===== REGISTRAR NOTAS =====")
 
     if len(inscripciones) == 0:
         print("No hay estudiantes inscritos.")
         return
 
-    try:
-        id_estudiante = int(input("Ingrese el ID del estudiante: "))
-        id_curso = int(input("Ingrese el ID del curso: "))
-    except ValueError:
-        print("Error: Debe ingresar números válidos.")
-        return
+    
+    while True:
 
-    esta_inscrito = False
+        try:
+            
+            id_estudiante = int(input("\nIngrese el ID del estudiante: "))
 
-    for inscripcion in inscripciones:
-        if inscripcion["id_estudiante"] == id_estudiante and inscripcion["id_curso"] == id_curso:
-            esta_inscrito = True
+            
+            id_curso = int(input("Ingrese el ID del curso: "))
 
-    if esta_inscrito == False:
-        print("Error: El estudiante no está inscrito en ese curso.")
-        return
+        except ValueError:
+            print("Error: Debe ingresar números válidos.")
+            continue
 
-    try:
-        nota = float(input("Ingrese la nota de 0.0 a 5.0: "))
-    except ValueError:
-        print("Error: Debe ingresar un valor numérico.")
-        return
+        
+        esta_inscrito = False
 
-    if nota < 0.0 or nota > 5.0:
-        print("Error: La nota debe estar entre 0.0 y 5.0.")
-        return
+        
+        for inscripcion in inscripciones:
 
-    nueva_nota = {
-        "id_estudiante": id_estudiante,
-        "id_curso": id_curso,
-        "nota": nota
-    }
+            
+            if (
+                inscripcion["id_estudiante"] == id_estudiante
+                and inscripcion["id_curso"] == id_curso
+            ):
+                esta_inscrito = True
 
-    notas.append(nueva_nota)
-    print("\nNota registrada correctamente.")
+        
+        if esta_inscrito == False:
+            print("Error: El estudiante no está inscrito en ese curso.")
+            continue
+
+        try:
+            
+            nota = float(input("Ingrese la nota de 0.0 a 5.0: "))
+
+        except ValueError:
+            print("Error: Debe ingresar un valor numérico.")
+            continue
+
+        
+        if nota < 0.0 or nota > 5.0:
+            print("Error: La nota debe estar entre 0.0 y 5.0.")
+            continue
+
+        
+        nueva_nota = {
+            "id_estudiante": id_estudiante,
+            "id_curso": id_curso,
+            "nota": nota
+        }
+
+        
+        notas.append(nueva_nota)
+
+        print("\nNota registrada correctamente.")
+
+        
+        continuar = input("\n¿Desea registrar otra nota? (si/no): ").lower()
+
+        
+        if continuar != "si":
+            print("\nFinalizando registro de notas...")
+            break
 
 
 def ver_mis_notas(notas):
