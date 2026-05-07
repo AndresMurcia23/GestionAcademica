@@ -1,11 +1,34 @@
+
 def registrar_usuario(usuarios):
+    """
+    Registra un nuevo usuario dentro del sistema académico.
+
+    Esta función solicita por consola un nickname y una contraseña,
+    valida que el nickname no exista previamente en la colección de usuarios
+    y permite asignar un rol específico al usuario (ESTUDIANTE o PROFESOR).
+
+    Parámetros:
+    ----------
+    usuarios : list
+        Lista de diccionarios que almacena la información de los usuarios.
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Utiliza listas y diccionarios como estructuras contenedoras.
+    - Modifica directamente la lista recibida por referencia.
+"""
+    
     print("\n===== CREAR USUARIO =====")
 
     nickname = input("Cree su nickname: ")
     contraseña = input("Cree su contraseña: ")
 
     for usuario in usuarios:
-        if usuario["nickname"] == nickname and usuario["contraseña"] == contraseña:
+        if usuario["nickname"] == nickname:
             print("Error: Ese nickname ya existe.")
             return
 
@@ -37,6 +60,28 @@ def registrar_usuario(usuarios):
 
 
 def login(usuarios):
+    """
+    Realiza el proceso de autenticación de usuarios.
+
+    La función solicita credenciales por consola y verifica si
+    existe un usuario registrado con los datos ingresados.
+
+    Parámetros:
+    ----------
+    usuarios : list
+        Colección de usuarios registrados en el sistema.
+
+    Retorna:
+    -------
+    dict | None
+        Retorna el diccionario correspondiente al usuario autenticado
+        si las credenciales son válidas. En caso contrario, retorna None.
+
+    Consideraciones técnicas:
+    ------------------------
+    - Accede a estructuras tipo diccionario mediante claves.
+    - Utiliza retorno condicional para control de flujo.
+    """
     print("\n===== LOGIN =====")
 
     nickname = input("Digite su nickname: ")
@@ -54,6 +99,28 @@ def login(usuarios):
 
 
 def crear_estudiante(estudiantes):
+    """
+    Crea y registra un nuevo estudiante en el sistema.
+
+    Solicita información básica del estudiante y genera automáticamente
+    un identificador basado en el tamaño actual de la colección.
+
+    Parámetros:
+    ----------
+    estudiantes : list
+        Lista que almacena los estudiantes registrados.
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Utiliza estructuras de datos tipo diccionario.
+    - Genera IDs incrementales mediante len().
+    - Inserta elementos dinámicamente en memoria.
+    """
+
     print("\n===== CREAR ESTUDIANTE =====")
 
     id_estudiante = len(estudiantes) + 1
@@ -75,6 +142,27 @@ def crear_estudiante(estudiantes):
 
 
 def listar_estudiantes(estudiantes):
+    """
+    Muestra en consola todos los estudiantes registrados.
+
+    Recorre secuencialmente la colección de estudiantes e imprime
+    la información almacenada de cada entidad.
+
+    Parámetros:
+    ----------
+    estudiantes : list
+        Lista de estudiantes registrados.
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Implementa recorrido secuencial O(n).
+    - Accede a datos mediante claves de diccionario.
+    - Realiza validación de colección vacía.
+    """
     print("\n===== LISTA DE ESTUDIANTES =====")
 
     if len(estudiantes) == 0:
@@ -91,6 +179,27 @@ def listar_estudiantes(estudiantes):
 
 
 def crear_curso(cursos):
+    """
+    Registra un nuevo curso académico.
+
+    Solicita información relacionada con el curso y valida
+    la entrada numérica correspondiente a los cupos disponibles.
+
+    Parámetros:
+    ----------
+    cursos : list
+        Lista de cursos almacenados en memoria.
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Implementa conversión de tipos str → int.
+    - Utiliza manejo de excepciones con try-except.
+    - Almacena información utilizando diccionarios.
+    """
     print("\n===== CREAR CURSO =====")
 
     id_curso = len(cursos) + 1
@@ -115,6 +224,24 @@ def crear_curso(cursos):
 
 
 def listar_cursos(cursos):
+    """
+    Visualiza todos los cursos registrados en el sistema.
+
+    Parámetros:
+    ----------
+    cursos : list
+        Colección de cursos registrados.
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Implementa iteración secuencial O(n).
+    - Realiza validación de lista vacía.
+    - Utiliza formateo dinámico mediante f-strings.
+    """
     print("\n===== LISTA DE CURSOS =====")
 
     if len(cursos) == 0:
@@ -130,6 +257,36 @@ def listar_cursos(cursos):
 
 
 def inscribir_estudiante(estudiantes, cursos, inscripciones):
+    """
+    Realiza el proceso de inscripción de un estudiante en un curso.
+
+    La función valida la existencia del estudiante y del curso,
+    verifica disponibilidad de cupos y evita duplicidad
+    de inscripciones.
+
+    Parámetros:
+    ----------
+    estudiantes : list
+        Colección de estudiantes.
+
+    cursos : list
+        Colección de cursos disponibles.
+
+    inscripciones : list
+        Registro de inscripciones realizadas.
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Implementa múltiples recorridos secuenciales O(n).
+    - Utiliza validaciones de integridad de datos.
+    - Modifica estructuras mutables por referencia.
+    - Aplica reglas de negocio para control de cupos.
+    """
+
     print("\n===== INSCRIBIR ESTUDIANTE =====")
 
     if len(estudiantes) == 0:
@@ -167,11 +324,11 @@ def inscribir_estudiante(estudiantes, cursos, inscripciones):
         if curso["id"] == id_curso:
             curso_encontrado = curso
 
-    if not estudiante_existe:
+    if estudiante_existe == False:
         print("Error: El estudiante no existe.")
         return
 
-    if curso_encontrado is None:
+    if curso_encontrado == None:
         print("Error: El curso no existe.")
         return
 
@@ -196,6 +353,32 @@ def inscribir_estudiante(estudiantes, cursos, inscripciones):
 
 
 def registrar_nota(inscripciones, notas):
+    """
+    Registra una calificación para un estudiante inscrito.
+
+    Valida previamente la existencia de la inscripción y
+    verifica que la nota se encuentre dentro del rango permitido.
+
+    Parámetros:
+    ----------
+    inscripciones : list
+        Lista de estudiantes inscritos en cursos.
+
+    notas : list
+        Registro general de notas.
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Implementa validación de rango numérico.
+    - Utiliza casting str → float.
+    - Emplea manejo de excepciones.
+    - Gestiona datos mediante diccionarios.
+    """
+
     print("\n===== REGISTRAR NOTA =====")
 
     if len(inscripciones) == 0:
@@ -215,7 +398,7 @@ def registrar_nota(inscripciones, notas):
         if inscripcion["id_estudiante"] == id_estudiante and inscripcion["id_curso"] == id_curso:
             esta_inscrito = True
 
-    if not esta_inscrito:
+    if esta_inscrito == False:
         print("Error: El estudiante no está inscrito en ese curso.")
         return
 
@@ -240,6 +423,27 @@ def registrar_nota(inscripciones, notas):
 
 
 def ver_mis_notas(notas):
+    """
+    Muestra las notas registradas en el sistema.
+
+    Determina adicionalmente el estado académico
+    del estudiante según la calificación obtenida.
+
+    Parámetros:
+    ----------
+    notas : list
+        Colección de notas registradas.
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Implementa operador ternario.
+    - Recorre estructuras dinámicas en memoria.
+    - Utiliza validación de datos vacíos.
+    """
     print("\n===== MIS NOTAS =====")
 
     if len(notas) == 0:
@@ -256,6 +460,23 @@ def ver_mis_notas(notas):
 
 
 def ver_mis_inscripciones(inscripciones):
+    """
+    Visualiza las inscripciones registradas en el sistema.
+
+    Parámetros:
+    ----------
+    inscripciones : list
+        Lista de inscripciones activas.
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Implementa recorrido secuencial.
+    - Utiliza acceso a diccionarios mediante claves.
+    """
     print("\n===== MIS INSCRIPCIONES =====")
 
     if len(inscripciones) == 0:
@@ -269,6 +490,24 @@ def ver_mis_inscripciones(inscripciones):
 
 
 def estado_academico(notas):
+    """
+    Muestra el estado académico de los estudiantes
+    según las notas registradas.
+
+    Parámetros:
+    ----------
+    notas : list
+        Colección de notas almacenadas.
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Utiliza operadores condicionales.
+    - Implementa lógica de evaluación académica.
+    """
     print("\n===== ESTADO ACADÉMICO =====")
 
     if len(notas) == 0:
@@ -281,6 +520,29 @@ def estado_academico(notas):
 
 
 def resumen_academico(estudiantes, cursos, inscripciones, notas):
+    """
+    Genera un resumen general del estado académico del sistema.
+
+    Calcula métricas relacionadas con estudiantes, cursos,
+    inscripciones y promedio general de notas.
+
+    Parámetros:
+    ----------
+    estudiantes : list
+    cursos : list
+    inscripciones : list
+    notas : list
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Implementa acumuladores.
+    - Realiza cálculos estadísticos básicos.
+    - Utiliza operaciones aritméticas sobre colecciones.
+    """
     print("\n===== RESUMEN ACADÉMICO =====")
 
     print(f"Total de estudiantes: {len(estudiantes)}")
@@ -289,7 +551,7 @@ def resumen_academico(estudiantes, cursos, inscripciones, notas):
     print(f"Total de notas registradas: {len(notas)}")
 
     if len(notas) == 0:
-        print("No hay notas para calcular.")
+        print("No hay notas para calcular aprobados o reprobados.")
         return
 
     aprobados = 0
@@ -312,16 +574,43 @@ def resumen_academico(estudiantes, cursos, inscripciones, notas):
 
 
 def menu_profesor(estudiantes, cursos, inscripciones, notas):
+    """
+    Gestiona el menú interactivo correspondiente al rol PROFESOR.
+
+    Permite acceder a las funcionalidades administrativas
+    del sistema académico.
+
+    Parámetros:
+    ----------
+    estudiantes : list
+    cursos : list
+    inscripciones : list
+    notas : list
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Implementa bucles infinitos controlados.
+    - Utiliza pattern matching.
+    - Centraliza navegación del sistema.
+    """
     while True:
-        print("\n===== MENÚ PROFESOR =====")
-        print("1. Crear estudiante")
-        print("2. Listar estudiantes")
-        print("3. Crear curso")
-        print("4. Listar cursos")
-        print("5. Inscribir estudiante")
-        print("6. Registrar nota")
-        print("7. Ver resumen académico")
-        print("8. Cerrar sesión")
+        print()
+        print("╔════════════════════════════════════════════╗")
+        print("║              MENÚ PROFESOR                ║")
+        print("╠════════════════════════════════════════════╣")
+        print("║  1. Crear estudiante                      ║")
+        print("║  2. Listar estudiantes                    ║")
+        print("║  3. Crear curso                           ║")
+        print("║  4. Listar cursos                         ║")
+        print("║  5. Inscribir estudiante                  ║")
+        print("║  6. Registrar nota                        ║")
+        print("║  7. Ver resumen académico                 ║")
+        print("║  8. Cerrar sesión                         ║")
+        print("╚════════════════════════════════════════════╝")
 
         opcion = input("Seleccione una opción: ")
 
@@ -341,19 +630,44 @@ def menu_profesor(estudiantes, cursos, inscripciones, notas):
             case "7":
                 resumen_academico(estudiantes, cursos, inscripciones, notas)
             case "8":
+                print("\nCerrando sesión...")
                 break
             case _:
-                print("Opción no válida.")
+                print("\nOpción no válida.")
 
 
 def menu_estudiante(cursos, inscripciones, notas):
+    """
+    Gestiona el menú interactivo correspondiente al rol ESTUDIANTE.
+
+    Permite consultar cursos, notas e información académica.
+
+    Parámetros:
+    ----------
+    cursos : list
+    inscripciones : list
+    notas : list
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Implementa control de flujo mediante match-case.
+    - Utiliza navegación estructurada por consola.
+    """
     while True:
-        print("\n===== MENÚ ESTUDIANTE =====")
-        print("1. Listar cursos")
-        print("2. Ver mis notas")
-        print("3. Ver mis inscripciones")
-        print("4. Ver estado académico")
-        print("5. Cerrar sesión")
+        print()
+        print("╔════════════════════════════════════════════╗")
+        print("║             MENÚ ESTUDIANTE               ║")
+        print("╠════════════════════════════════════════════╣")
+        print("║  1. Listar cursos                         ║")
+        print("║  2. Ver mis notas                         ║")
+        print("║  3. Ver mis inscripciones                 ║")
+        print("║  4. Ver estado académico                  ║")
+        print("║  5. Cerrar sesión                         ║")
+        print("╚════════════════════════════════════════════╝")
 
         opcion = input("Seleccione una opción: ")
 
@@ -367,67 +681,129 @@ def menu_estudiante(cursos, inscripciones, notas):
             case "4":
                 estado_academico(notas)
             case "5":
+                print("\nCerrando sesión...")
                 break
             case _:
-                print("Opción no válida.")
+                print("\nOpción no válida.")
 
 
 def main():
+    """
+    Función principal del sistema académico.
+
+    Inicializa las estructuras de almacenamiento en memoria,
+    carga datos iniciales y controla el flujo principal
+    de ejecución del programa.
+
+    Retorna:
+    -------
+    None
+
+    Consideraciones técnicas:
+    ------------------------
+    - Define estructuras de datos dinámicas.
+    - Gestiona autenticación y control de roles.
+    - Implementa bucles principales de ejecución.
+    - Actúa como punto central de coordinación del sistema.
+    """
     usuarios = []
 
     estudiantes = [
-        {"id": 1, "nombre": "Juan Perez", "documento": "1001", "correo": "juan@correo.com", "semestre": "2"},
-        {"id": 2, "nombre": "Laura Gomez", "documento": "1002", "correo": "laura@correo.com", "semestre": "3"},
-        {"id": 3, "nombre": "Carlos Ruiz", "documento": "1003", "correo": "carlos@correo.com", "semestre": "1"}
+        {
+            "id": 1,
+            "nombre": "Juan Perez",
+            "documento": "1001",
+            "correo": "juan@correo.com",
+            "semestre": "2"
+        },
+        {
+            "id": 2,
+            "nombre": "Laura Gomez",
+            "documento": "1002",
+            "correo": "laura@correo.com",
+            "semestre": "3"
+        },
+        {
+            "id": 3,
+            "nombre": "Carlos Ruiz",
+            "documento": "1003",
+            "correo": "carlos@correo.com",
+            "semestre": "1"
+        }
     ]
 
     cursos = [
-        {"id": 1, "nombre": "Programacion I", "profesor": "Andres Martinez", "cupos": 20},
-        {"id": 2, "nombre": "Bases de Datos", "profesor": "Maria Rodriguez", "cupos": 15},
-        {"id": 3, "nombre": "Matematicas", "profesor": "Felipe Torres", "cupos": 25}
+        {
+            "id": 1,
+            "nombre": "Programacion I",
+            "profesor": "Andres Martinez",
+            "cupos": 20
+        },
+        {
+            "id": 2,
+            "nombre": "Bases de Datos",
+            "profesor": "Maria Rodriguez",
+            "cupos": 15
+        },
+        {
+            "id": 3,
+            "nombre": "Matematicas",
+            "profesor": "Felipe Torres",
+            "cupos": 25
+        }
     ]
 
     inscripciones = [
         {"id_estudiante": 1, "id_curso": 1},
-        {"id_estudiante": 2, "id_curso": 2}
+        {"id_estudiante": 1, "id_curso": 3},
+        {"id_estudiante": 2, "id_curso": 2},
+        {"id_estudiante": 3, "id_curso": 1}
     ]
 
     notas = [
-        {"id_estudiante": 1, "id_curso": 1, "nota": 4.5},
-        {"id_estudiante": 2, "id_curso": 2, "nota": 3.9}
+        {"id_estudiante": 1, "id_curso": 1, "nota": 4.2},
+        {"id_estudiante": 1, "id_curso": 3, "nota": 3.8},
+        {"id_estudiante": 2, "id_curso": 2, "nota": 4.6},
+        {"id_estudiante": 3, "id_curso": 1, "nota": 2.9}
     ]
 
     while True:
         usuario_actual = None
 
-        while usuario_actual is None:
-            print("\n===== MENÚ PRINCIPAL =====")
-            print("1. Crear usuario")
-            print("2. Iniciar sesión")
-            print("3. Salir")
+        while usuario_actual == None:
+            print()
+            print("╔════════════════════════════════════════════╗")
+            print("║              MENÚ DE ACCESO               ║")
+            print("╠════════════════════════════════════════════╣")
+            print("║  1. Crear usuario                         ║")
+            print("║  2. Iniciar sesión                        ║")
+            print("║  3. Salir                                 ║")
+            print("╚════════════════════════════════════════════╝")
 
             opcion = input("Seleccione una opción: ")
 
             match opcion:
                 case "1":
                     registrar_usuario(usuarios)
+
                 case "2":
                     if len(usuarios) == 0:
-                        print("Primero debe crear un usuario.")
+                        print("\nPrimero debe crear un usuario.")
                     else:
                         usuario_actual = login(usuarios)
+
                 case "3":
-                    print("Saliendo...")
+                    print("\nGracias por usar el sistema.")
                     return
+
                 case _:
-                    print("Opción no válida.")
+                    print("\nOpción no válida.")
 
         if usuario_actual["rol"] == "PROFESOR":
             menu_profesor(estudiantes, cursos, inscripciones, notas)
-        else:
-            menu_estudiante(cursos, inscripciones, notas)
-            
 
+        elif usuario_actual["rol"] == "ESTUDIANTE":
+            menu_estudiante(cursos, inscripciones, notas)
 
 
 if __name__ == "__main__":
