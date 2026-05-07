@@ -1,3 +1,4 @@
+
 def registrar_usuario(usuarios):
     """
     Registra un nuevo usuario dentro del sistema académico.
@@ -621,16 +622,16 @@ def menu_profesor(estudiantes, cursos, inscripciones, notas):
     while True:
         print()
         print("╔════════════════════════════════════════════╗")
-        print("║              MENÚ PROFESOR                ║")
+        print("║              MENÚ PROFESOR                 ║")
         print("╠════════════════════════════════════════════╣")
-        print("║  1. Crear estudiante                      ║")
-        print("║  2. Listar estudiantes                    ║")
-        print("║  3. Crear curso                           ║")
-        print("║  4. Listar cursos                         ║")
-        print("║  5. Inscribir estudiante                  ║")
-        print("║  6. Registrar nota                        ║")
-        print("║  7. Ver resumen académico                 ║")
-        print("║  8. Cerrar sesión                         ║")
+        print("║  1. Crear estudiante                       ║")
+        print("║  2. Listar estudiantes                     ║")
+        print("║  3. Crear curso                            ║")
+        print("║  4. Listar cursos                          ║")
+        print("║  5. Inscribir estudiante                   ║")
+        print("║  6. Registrar nota                         ║")
+        print("║  7. Ver resumen académico                  ║")
+        print("║  8. Cerrar sesión                          ║")
         print("╚════════════════════════════════════════════╝")
 
         opcion = input("Seleccione una opción: ")
@@ -681,13 +682,13 @@ def menu_estudiante(cursos, inscripciones, notas):
     while True:
         print()
         print("╔════════════════════════════════════════════╗")
-        print("║             MENÚ ESTUDIANTE               ║")
+        print("║             MENÚ ESTUDIANTE                ║")
         print("╠════════════════════════════════════════════╣")
-        print("║  1. Listar cursos                         ║")
-        print("║  2. Ver mis notas                         ║")
-        print("║  3. Ver mis inscripciones                 ║")
-        print("║  4. Ver estado académico                  ║")
-        print("║  5. Cerrar sesión                         ║")
+        print("║  1. Listar cursos                          ║")
+        print("║  2. Ver mis notas                          ║")
+        print("║  3. Ver mis inscripciones                  ║")
+        print("║  4. Ver estado académico                   ║")
+        print("║  5. Cerrar sesión                          ║")
         print("╚════════════════════════════════════════════╝")
 
         opcion = input("Seleccione una opción: ")
@@ -794,11 +795,11 @@ def main():
         while usuario_actual == None:
             print()
             print("╔════════════════════════════════════════════╗")
-            print("║              MENÚ DE ACCESO               ║")
+            print("║              MENÚ DE ACCESO                ║")
             print("╠════════════════════════════════════════════╣")
-            print("║  1. Crear usuario                         ║")
-            print("║  2. Iniciar sesión                        ║")
-            print("║  3. Salir                                 ║")
+            print("║  1. Crear usuario                          ║")
+            print("║  2. Iniciar sesión                         ║")
+            print("║  3. Salir                                  ║")
             print("╚════════════════════════════════════════════╝")
 
             opcion = input("Seleccione una opción: ")
